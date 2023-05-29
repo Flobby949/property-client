@@ -30,6 +30,9 @@
 				</div>
 			</van-form>
 		</div>
+		<div class="tips">
+			<span @click="repassword">忘记密码?</span>
+		</div>
 	</div>
 </template>
 
@@ -45,17 +48,23 @@ const form = reactive({
 })
 
 function onSubmit() {
-	loginByPassword(form).then(
-		res => {
-			showSuccessToast('登录成功')
-			localStorage.setItem('admin', res.accessToken)
-			router.push('/')
-		},
-		err => {
-			console.log(err)
-			showFailToast('请求有误')
-		}
-	)
+	// loginByPassword(form).then(
+	// 	res => {
+	// 		showSuccessToast('登录成功')
+	// 		localStorage.setItem('admin', res.accessToken)
+	// 		router.push('/')
+	// 	},
+	// 	err => {
+	// 		console.log(err)
+	// 		showFailToast('请求有误')
+	// 	}
+	// )
+	localStorage.setItem('admin', '123456')
+	router.push('/')
+}
+
+const repassword = () => {
+	router.push('/repassword')
 }
 </script>
 
@@ -73,5 +82,12 @@ function onSubmit() {
 }
 .form {
 	padding: 40px 10px;
+}
+.tips {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-right: 20px;
+	font-size: 14px;
 }
 </style>
