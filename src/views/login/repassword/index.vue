@@ -6,7 +6,7 @@
 				<van-form @submit="onSubmit">
 					<van-cell-group inset>
 						<van-field
-							v-model="form.mobile"
+							v-model="form.phone"
 							label="+86>"
 							label-width="35"
 							name="请输入手机号"
@@ -49,13 +49,13 @@
 </template>
 
 <script setup lang="ts">
-// import { forgetPassword, sendPhone } from '@/api/user'
+import { sendSms, forget } from '@/api/user'
 import { showFailToast, showSuccessToast } from 'vant'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const form = reactive({
-	mobile: '',
+	phone: '',
 	code: '',
 	oldpassword: '',
 	password: ''
@@ -71,40 +71,37 @@ let timer: any = null
 let time = ref(0)
 let show = ref(false)
 function send() {
-	if (form.mobile == '') {
+	if (form.phone == '') {
 		return showFailToast('手机号不能为空')
 	}
 
-	// sendPhone({
-	// 	mobile: form.mobile,
-	// 	type: 0
-	// }).then((res: any) => {
-	// 	if (res.code == 1) {
-	// 		show.value = true
-	// 		showSuccessToast('验证码发送成功')
-	// 		time.value = 60
-	// 		timer = setInterval(() => {
-	// 			time.value--
-	// 			if (time.value <= 0) {
-	// 				show.value = false
-	// 				clearInterval(timer)
-	// 			}
-	// 		}, 1000)
-	// 	} else {
-	// 		return showFailToast(res.msg)
-	// 	}
-	// })
+	sendSms(form.phone).then((res: any) => {
+		if (res.code == 1) {
+			show.value = true
+			showSuccessToast('验证码发送成功')
+			time.value = 60
+			timer = setInterval(() => {
+				time.value--
+				if (time.value <= 0) {
+					show.value = false
+					clearInterval(timer)
+				}
+			}, 1000)
+		} else {
+			return showFailToast(res.msg)
+		}
+	})
 }
 
 function onSubmit() {
-	// forgetPassword(form).then((res: any) => {
-	// 	if (res.code == 1) {
-	// 		showSuccessToast('修改密码成功')
-	// 		router.push('/login')
-	// 	} else {
-	// 		showFailToast('修改密码失败')
-	// 	}
-	// })
+	forget(form).then((res: any) => {
+		if (res.code == 1) {
+			showSuccessToast('修改密码成功')
+			router.push('/login')
+		} else {
+			showFailToast('修改密码失败')
+		}
+	})
 }
 </script>
 

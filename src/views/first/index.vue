@@ -26,6 +26,7 @@ onUnmounted(() => {
 .box {
 	height: 100vh;
 	width: 100vw;
-	background-color: rgba(0, 0, 0, 0.3);
+	background: url('@/assets/bg.png') no-repeat;
+	background-size: 100% 100%;
 }
 </style>
