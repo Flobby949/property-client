@@ -61,6 +61,54 @@ const routes: Array<RouteRecordRaw> = [
 			title: '重置密码'
 		},
 		component: () => import('@/views/login/repassword/index.vue')
+	},
+	{
+		path: '/remote',
+		name: 'remote',
+		component: () => import('@/views/remote/index.vue'),
+		meta: {
+			title: '远程'
+		}
+	},
+	{
+		path: '/patrolRecord',
+		name: 'patrolRecord',
+		component: () => import('@/views/patrolRecord/index.vue'),
+		meta: {
+			title: '巡检记录'
+		}
+	},
+	{
+		path: '/patrolDetail',
+		name: 'patrolDetail',
+		component: () => import('@/views/patrolDetail.vue'),
+		meta: {
+			title: '巡检详情'
+		}
+	},
+	{
+		path: '/submitPatrol',
+		name: 'submitPatrol',
+		component: () => import('@/views/submitPatrol/index.vue'),
+		meta: {
+			title: '提交巡检'
+		}
+	},
+	{
+		path: '/patrol',
+		name: 'patrol',
+		component: () => import('@/views/patrol/index.vue'),
+		meta: {
+			title: '巡检'
+		}
+	},
+	{
+		path: '/orderDetail/:orderId',
+		name: 'orderDetail',
+		component: () => import('@/views/orderDetail/index.vue'),
+		meta: {
+			title: '工单详情'
+		}
 	}
 ]
 
