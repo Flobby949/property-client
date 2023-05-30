@@ -10,6 +10,10 @@ declare module '@vue/runtime-core' {
     NavBar: typeof import('./src/components/NavBar/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SmartIcon: typeof import('./src/components/smart-icon/index.vue')['default']
+    SmartInput: typeof import('./src/components/smart-input/index.vue')['default']
+    SmartItem: typeof import('./src/components/smart-item/index.vue')['default']
+    SmartListItem: typeof import('./src/components/smart-list-item/index.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
     Tabbar: typeof import('./src/components/Tabbar/index.vue')['default']
     VanButton: typeof import('vant/es')['Button']
@@ -18,9 +22,12 @@ declare module '@vue/runtime-core' {
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
     VanField: typeof import('vant/es')['Field']
     VanForm: typeof import('vant/es')['Form']
+    VanIcon: typeof import('vant/es')['Icon']
     VanNavBar: typeof import('vant/es')['NavBar']
     VanSpace: typeof import('vant/es')['Space']
+    VanSwitch: typeof import('vant/es')['Switch']
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
+    VantIcon: typeof import('vant/es')['tIcon']
   }
 }
