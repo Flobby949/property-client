@@ -38,29 +38,24 @@
 
 <script setup lang="ts">
 import { showSuccessToast, showFailToast } from 'vant'
+import { login } from '@/api/user'
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import { loginByPassword } from '@/api/auth'
 const router = useRouter()
 const form = reactive({
-	phone: '18962521753',
+	phone: '15729611641',
 	password: '123456'
 })
 
 function onSubmit() {
-	// loginByPassword(form).then(
-	// 	res => {
-	// 		showSuccessToast('登录成功')
-	// 		localStorage.setItem('admin', res.accessToken)
-	// 		router.push('/')
-	// 	},
-	// 	err => {
-	// 		console.log(err)
-	// 		showFailToast('请求有误')
-	// 	}
-	// )
-	localStorage.setItem('admin', '123456')
-	router.push('/')
+	login(form).then((res: any) => {
+		if (res.code != 1) {
+			return showFailToast(res.msg)
+		}
+		showSuccessToast('登录成功')
+		localStorage.setItem('accessToken', res.data.accessToken)
+		router.push('/')
+	})
 }
 
 const repassword = () => {

@@ -17,7 +17,7 @@ export interface toRouteType extends RouteLocationNormalized {
 
 const whiteList = ['/login', '/first', '/repassword']
 router.beforeEach((to: toRouteType, from, next) => {
-	const token = localStorage.getItem('admin')
+	const token = localStorage.getItem('accessToken')
 
 	NProgress.start()
 	// 路由缓存
