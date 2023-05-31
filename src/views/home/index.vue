@@ -1,9 +1,8 @@
 <template>
 	<div>
 		home
-
 		<!-- 今日巡更开始 -->
-		<div class="w-[95%] bg-blue-400 mx-auto h-[150px] rounded-2xl mt-3 flex flex-col">
+		<div class="w-[95%] bg-blue-400 mx-auto h-[150px] rounded-2xl mt-3 flex flex-col" @click="toPatrol">
 			<div class="h-[35px] text-white font-medium text-lg flex flex-row justify-center mt-3">今日巡更</div>
 			<div class="h-[35px] text-white flex flex-row justify-center">随时随地更新概况</div>
 			<div class="h-[80px] flex flex-row items-center justify-center mt-5 pb-3">
@@ -28,7 +27,7 @@
 <script setup>
 import { useOverNumber, useNoNumber, useAllNumber } from '@/api/safe/record.ts'
 import { reactive, ref, computed } from 'vue'
-
+import { useRouter } from 'vue-router'
 const numberForm = reactive({
 	pointNumber: '',
 	overPointNumber: '',
@@ -49,6 +48,12 @@ const getPatrolNumbers = () => {
 	})
 }
 getPatrolNumbers()
+
+const router = useRouter()
+
+const toPatrol = () => {
+	router.push({ path: '/patrol' })
+}
 </script>
 
 <style scoped></style>
