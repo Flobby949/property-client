@@ -1,5 +1,6 @@
 import axios from 'axios'
-
+import type { AxiosError, InternalAxiosRequestConfig, AxiosResponse } from 'axios'
+import NProgress from 'nprogress'
 const service = axios.create({
 	baseURL: 'http://localhost:8080',
 	timeout: 5000
@@ -14,11 +15,22 @@ service.interceptors.request.use(
 	}
 )
 
-service.interceptors.response.use(
-	responese => {
-		return responese.data
+service.interceptors.request.use(
+	(req: InternalAxiosRequestConfig) => {
+		NProgress.start()
+		req.headers['Authorization'] = localStorage.getItem('accessToken')
+		return req
 	},
-	err => {
+	(err: AxiosError) => {
+		return Promise.reject(err)
+	}
+)
+service.interceptors.response.use(
+	(response: AxiosResponse) => {
+		NProgress.done()
+		return response.data
+	},
+	(err: AxiosError) => {
 		return Promise.reject(err)
 	}
 )
