@@ -81,7 +81,7 @@ const routes: Array<RouteRecordRaw> = [
 	{
 		path: '/patrolDetail',
 		name: 'patrolDetail',
-		component: () => import('@/views/patrolDetail.vue'),
+		component: () => import('@/views/patrolDetail/index.vue'),
 		meta: {
 			title: '巡检详情'
 		}
