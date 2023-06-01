@@ -39,7 +39,7 @@
 					</div>
 				</div>
 				<div class="text-gray-500 font-semibold ml-3 mt-3">
-					<div>巡检人：{{ item.REALNAME }}</div>
+					<div>巡检人：{{ item.realname }}</div>
 				</div>
 			</div>
 			<!-- 数据展示结束 -->
@@ -49,19 +49,55 @@
 
 <script setup lang="ts">
 import NavBar from '@/components/NavBar/index.vue'
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
+import { useRecordsList } from '@/api/safe/Trecords'
 
+const loading = ref(false)
 //获取当前日期
 const date = new Date()
 
 const chooseDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()])
 const currentDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()])
 const show = ref(false)
+//请求条件
+const dataform = reactive({
+	patrolDate: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(),
+	inspectorId: 10004,
+	order: '',
+	asc: false,
+	page: 1,
+	limit: 3
+})
+
+onMounted(() => {
+	getRecords()
+})
+
+//数据
+const records: RecordItem[] = reactive([])
+const getRecords = () => {
+	console.log(dataform)
+	useRecordsList({
+		params: {
+			...dataform
+		}
+	}).then(res => {
+		console.log(res.data.list)
+		res.data.list.forEach(element => {
+			records.push(element)
+		})
+
+		console.log(records)
+	})
+}
+//显示日期选择器
 const showPopup = () => {
 	currentDate.value = []
 	currentDate.value = [...chooseDate.value]
 	show.value = true
 }
+
+//关闭日期选择器
 const clonsePopup = () => {
 	show.value = false
 }
@@ -69,83 +105,43 @@ const clonsePopup = () => {
 const selectDate = selectedValues => {
 	chooseDate.value = []
 	chooseDate.value = [...selectedValues.selectedValues]
-	dataform.nowDate = chooseDate.value[0] + '-' + chooseDate.value[1] + '-' + chooseDate.value[2]
+	dataform.patrolDate = chooseDate.value[0] + '-' + chooseDate.value[1] + '-' + chooseDate.value[2]
+	records.splice(0, records.length)
+	getRecords()
 	show.value = false
 }
 
-//数据
-const records = ref<any>([
-	{
-		type: 0,
-		communityName: '万象城',
-		buildingName: '文宇楼',
-		units: 1,
-		pointName: '27栋点1',
-		REALNAME: '张三',
-		startTime: '8:00',
-		endTime: '9:00',
-		status: 1
-	},
-	{
-		type: 0,
-		communityName: '万象城',
-		buildingName: '文宇楼',
-		units: 1,
-		pointName: '27栋点2',
-		REALNAME: '张三',
-		startTime: '8:00',
-		endTime: '9:00',
-		status: 1
-	},
-	{
-		type: 0,
-		communityName: '万象城',
-		buildingName: '文宇楼',
-		units: 1,
-		pointName: '27栋点3',
-		REALNAME: '张三',
-		startTime: '8:00',
-		endTime: '9:00',
-		status: 0
-	},
-	{
-		type: 1,
-		units: 1,
-		communityName: '万象城',
-		pointName: '28栋电梯',
-		REALNAME: '张三',
-		startTime: '8:00',
-		endTime: '9:00',
-		status: 1
-	},
-	{
-		type: 0,
-		communityName: '万象城',
-		buildingName: '文宇楼',
-		units: 1,
-		pointName: '',
-		REALNAME: '张三',
-		startTime: '8:00',
-		endTime: '9:00',
-		status: 0
-	},
-	{
-		type: 1,
-		units: 1,
-		communityName: '万象城',
-		pointName: '27栋电梯',
-		REALNAME: '张三',
-		startTime: '8:00',
-		endTime: '9:00',
-		status: 1
-	}
-])
+// window.addEventListener('scroll', function () {
+// 	// detect scroll position and trigger loading logic
+// 	if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+// 		// load new data
+// 		dataform.page += 1
+// 		getRecords()
+// 	}
+// })
 
-//请求条件
-const dataform = reactive({
-	nowDate: '',
-	inspectorId: localStorage.getItem('')
-})
+interface RecordItem {
+	id: number
+	planId: number
+	pathId: number
+	communityName: string
+	buildingName?: string
+	units?: number
+	startTime: string
+	endTime: string
+	pointId: number
+	pointName: string
+	inspectorId: number
+	realname: string
+	PHONE: string
+	type: number
+	inspectorTime?: string
+	inspectorResult?: string
+	photoRequirement: number
+	photo: string[]
+	notes?: string
+	status: number
+}
 </script>
 
 <style scoped>
