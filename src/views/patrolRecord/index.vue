@@ -12,7 +12,7 @@
 			</van-popup>
 		</div>
 
-		<div class="w-[92%] mx-auto relative top-[-35px]">
+		<van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" class="w-[92%] mx-auto relative top-[-35px]" @load="onLoad">
 			<!-- 数据展示开始 -->
 			<div v-for="(item, index) in records" :key="index" class="w-[100%] h-[180px] bg-white mb-3">
 				<div v-if="item.type == 0" class="flex flex-row items-center justify-between border-b border-slate-300 border-dotted w-[100%] h-[50px]">
@@ -34,7 +34,11 @@
 					<div v-if="item.status == 0" class="rounded-full w-[80px] h-[28px] text-white bg-red-400 flex justify-center items-center font-normal">
 						去巡更
 					</div>
-					<div v-if="item.status == 1" class="rounded-full w-[80px] h-[28px] text-white bg-blue-400 flex justify-center items-center font-normal">
+					<div
+						v-if="item.status == 1"
+						class="rounded-full w-[80px] h-[28px] text-white bg-blue-400 flex justify-center items-center font-normal"
+						@click="getInfo(item.id)"
+					>
 						查看
 					</div>
 				</div>
@@ -43,7 +47,7 @@
 				</div>
 			</div>
 			<!-- 数据展示结束 -->
-		</div>
+		</van-list>
 	</div>
 </template>
 
@@ -51,8 +55,8 @@
 import NavBar from '@/components/NavBar/index.vue'
 import { onMounted, reactive, ref } from 'vue'
 import { useRecordsList } from '@/api/safe/Trecords'
+import router from '@/router'
 
-const loading = ref(false)
 //获取当前日期
 const date = new Date()
 
@@ -66,7 +70,7 @@ const dataform = reactive({
 	order: '',
 	asc: false,
 	page: 1,
-	limit: 3
+	limit: 5
 })
 
 onMounted(() => {
@@ -75,6 +79,7 @@ onMounted(() => {
 
 //数据
 const records: RecordItem[] = reactive([])
+const total = ref(0)
 const getRecords = () => {
 	console.log(dataform)
 	useRecordsList({
@@ -82,11 +87,17 @@ const getRecords = () => {
 			...dataform
 		}
 	}).then(res => {
-		console.log(res.data.list)
+		console.log(res.data)
+		total.value = res.data.total
 		res.data.list.forEach(element => {
 			records.push(element)
 		})
-
+		// 加载状态结束
+		loading.value = false
+		// 数据全部加载完成
+		if (records.length >= total.value) {
+			finished.value = true
+		}
 		console.log(records)
 	})
 }
@@ -111,19 +122,32 @@ const selectDate = selectedValues => {
 	show.value = false
 }
 
-// window.addEventListener('scroll', function () {
-// 	// detect scroll position and trigger loading logic
-// 	if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-// 		// load new data
-// 		dataform.page += 1
-// 		getRecords()
-// 	}
-// })
+//list组件loading和finished属性
+const loading = ref(false)
+const finished = ref(false)
+
+const onLoad = () => {
+	// 异步更新数据
+	dataform.page = dataform.page + 1
+	console.log(dataform.page)
+	getRecords()
+}
+
+//查看详情
+const getInfo = (recordId: number) => {
+	router.push({
+		name: 'patrolDetail',
+		params: {
+			recordId: recordId
+		}
+	})
+}
 
 interface RecordItem {
 	id: number
 	planId: number
 	pathId: number
+	wayName: string
 	communityName: string
 	buildingName?: string
 	units?: number
@@ -133,12 +157,12 @@ interface RecordItem {
 	pointName: string
 	inspectorId: number
 	realname: string
-	PHONE: string
+	phone: string
 	type: number
 	inspectorTime?: string
 	inspectorResult?: string
 	photoRequirement: number
-	photo: string[]
+	photo: string
 	notes?: string
 	status: number
 }
