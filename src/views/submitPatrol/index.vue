@@ -48,20 +48,22 @@
 
 				<div class="flex flex-col items-center mt-5">
 					<van-field
-						v-model="value"
+						v-model="textValue"
 						placeholder="请写下详细报修内容，有助于工作人员快速帮您解决问题"
 						class="border mx-auto rounded-md h-[130px]"
 						style="width: 330px"
 					/>
 				</div>
 
-				<div>
-					<van-uploader :after-read="afterRead" upload-icon="plus" class="ml-3 mt-3" />
+				<div class="flex">
+					<div>
+						<van-uploader v-model="fileList.value" :after-read="afterRead" upload-icon="plus" class="ml-3 mt-3" multiple :max-count="3" reupload />
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="flex flex-col items-center">
+		<div class="flex flex-col items-center" @click="onSubmit()">
 			<van-button type="primary" round class="w-[200px] relative top-[77px]" style="height: 40px">提交</van-button>
 		</div>
 	</div>
@@ -70,27 +72,55 @@
 <script setup>
 import NavBar from '@/components/NavBar/index.vue'
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { useSubmitRecord } from '@/api/safe/record.ts'
+import { useRoute, useRouter } from 'vue-router'
+import { useSubmitRecord, useUploadImage } from '@/api/safe/record.ts'
+import service from '@/utils/http'
+
 const route = useRoute()
+const router = useRouter()
 const list = route.query.item
 const item = JSON.parse(list)
 const dataForm = ref({
+	id: '',
 	status: '',
 	notes: '',
 	photo: ''
 })
-console.log('--------------niah')
-console.log(item.title)
-console.log('--------------niah')
-
+const textValue = ref()
 const title = ref('巡更上报')
-
+const fileList = ref([])
 const checked = ref('0')
 
 const onSubmit = () => {
-	dataForm.value.status = checked.value
-	useSubmitRecord(dataForm).then(res => {})
+	dataForm.value.id = item.id
+	dataForm.value.status = 1
+	dataForm.value.notes = textValue.value
+	for (let index = 0; index < fileList.value.length; index++) {
+		let element = fileList.value[index]
+
+		if (dataForm.value.photo == '') {
+			dataForm.value.photo = element
+		}
+		dataForm.value.photo = dataForm.value.photo + ',' + element
+	}
+
+	console.log('dataform:' + dataForm.value)
+	useSubmitRecord(dataForm.value).then(res => {
+		console.log(res)
+		console.log(res.data)
+	})
+	router.back()
+}
+
+const url = '/safe/record/upload?accessToken=' + localStorage.getItem('accessToken')
+const afterRead = file => {
+	const formData = new FormData()
+	formData.append('file', file.file)
+	service.post(url, formData).then(res => {
+		console.log('连接' + res.data.url)
+		fileList.value.push(res.data.url)
+		console.log(fileList.value)
+	})
 }
 </script>
 

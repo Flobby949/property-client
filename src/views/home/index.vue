@@ -33,17 +33,17 @@ const numberForm = reactive({
 	overPointNumber: '',
 	noPointNumber: ''
 })
-
+const inspectorId = ref(10004)
 const getPatrolNumbers = () => {
-	useAllNumber().then(res => {
+	useAllNumber(inspectorId.value).then(res => {
 		console.log(res.data)
 		Object.assign(numberForm, res.data)
 	})
-	useOverNumber().then(res => {
+	useOverNumber(inspectorId.value).then(res => {
 		Object.assign(numberForm, res.data)
 	})
 
-	useNoNumber().then(res => {
+	useNoNumber(inspectorId.value).then(res => {
 		Object.assign(numberForm, res.data)
 	})
 }
@@ -52,7 +52,7 @@ getPatrolNumbers()
 const router = useRouter()
 
 const toPatrol = () => {
-	router.push({ path: '/patrol' })
+	router.push({ path: '/patrol', query: { id: inspectorId.value } })
 }
 </script>
 
