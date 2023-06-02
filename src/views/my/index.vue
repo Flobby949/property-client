@@ -1,98 +1,38 @@
 <template>
-	<smartinput title="车位编号">
-		<van-switch />
-	</smartinput>
-	<smarticon :list="myiconList" />
-	<smartitem :list="myList" />
-	<template v-for="(item, index) in list" :key="index">
-		<smartlistitem :name="item.name" :title="item.title" />
-	</template>
-	<div>我的</div>
+	<div>
+		<div class="h-52 bg-blue-400"></div>
+		<div class="flex -mt-32">
+			<van-image class="ml-10 -mt-8" round width="5rem" height="5rem" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+			<p class="text-white ml-5">用户2023</p>
+		</div>
+		<van-sidebar class="mt-20 ml-4">
+			<van-sidebar-item title="服务工具" />
+		</van-sidebar>
+		<van-cell-group class="">
+			<van-cell title="上报记录" size="large" url="#/certified" is-link>
+				<template #icon>
+					<van-icon class="ml-1 mr-1" name="https://music-1307940544.cos.ap-nanjing.myqcloud.com/test/shangbao.png" size="22"></van-icon>
+				</template>
+			</van-cell>
+			<van-cell title="巡更记录" size="large" is-link>
+				<template #icon>
+					<van-icon class="mr-1" name="https://music-1307940544.cos.ap-nanjing.myqcloud.com/test/xungeng.png" size="26"></van-icon>
+				</template>
+			</van-cell>
+			<van-cell title="工单记录" url="" size="large" is-link>
+				<template #icon>
+					<van-icon class="mr-1" name="https://music-1307940544.cos.ap-nanjing.myqcloud.com/test/gongdan.png" size="26"></van-icon>
+				</template>
+			</van-cell>
+			<van-cell title="设置" url="" size="large" is-link>
+				<template #icon>
+					<van-icon class="mr-1" name="https://music-1307940544.cos.ap-nanjing.myqcloud.com/test/shezhi.png" size="24"></van-icon>
+				</template>
+			</van-cell>
+		</van-cell-group>
+	</div>
 </template>
 
-<script setup lang="ts">
-import smartinput from '@/components/smart-input/index.vue'
-import smarticon from '@/components/smart-icon/index.vue'
-import smartitem from '@/components/smart-item/index.vue'
-import smartlistitem from '@/components/smart-list-item/index.vue'
-const myiconList = [
-	{
-		name: 'chat-o',
-		title: '我的消息',
-		color: '#fbbd08'
-	},
-	{
-		name: 'friends-o',
-		title: '我的好友',
-		color: '#38f'
-	},
-	{
-		name: 'setting-o',
-		title: '设置',
-		color: '#ff4949'
-	},
-	{
-		name: 'chat-o',
-		title: '我的消息',
-		color: '#fbbd08'
-	},
-	{
-		name: 'friends-o',
-		title: '我的好友',
-		color: '#38f'
-	},
-	{
-		name: 'setting-o',
-		title: '设置',
-		color: '#ff4949'
-	}
-]
-const myList = [
-	{
-		name: 'chat-o',
-		title: '我的消息',
-		color: '#fbbd08'
-	},
-	{
-		name: 'friends-o',
-		title: '我的好友',
-		color: '#38f'
-	},
-	{
-		name: 'setting-o',
-		title: '设置',
-		color: '#ff4949'
-	},
-	{
-		name: 'chat-o',
-		title: '我的消息',
-		color: '#fbbd08'
-	},
-	{
-		name: 'friends-o',
-		title: '我的好友',
-		color: '#38f'
-	},
-	{
-		name: 'setting-o',
-		title: '设置',
-		color: '#ff4949'
-	}
-]
-const list = [
-	{
-		name: 'chat-o',
-		title: '我的消息'
-	},
-	{
-		name: 'friends-o',
-		title: '我的好友'
-	},
-	{
-		name: 'setting-o',
-		title: '设置'
-	}
-]
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>
