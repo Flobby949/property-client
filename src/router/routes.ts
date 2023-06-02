@@ -79,7 +79,7 @@ const routes: Array<RouteRecordRaw> = [
 		}
 	},
 	{
-		path: '/patrolDetail',
+		path: '/patrolDetail:recordId',
 		name: 'patrolDetail',
 		component: () => import('@/views/patrolDetail/index.vue'),
 		meta: {
