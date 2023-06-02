@@ -1,6 +1,6 @@
 import service from '@/utils/http'
-export const useTodayList = (dataForm: any ) => {
-	return service.get(`/safe/record/overPointNumber` , dataForm)
+export const useTodayList = (id: any ) => {
+	return service.get('/safe/record/page', id)
 }
 
 export const useOverNumber=()=>{
@@ -19,7 +19,7 @@ export const useAllNumber=()=>{
     
 }
 
-export const useSubmitRecordr=(dataForm: any)=>{
+export const useSubmitRecord=(dataForm: any)=>{
     return service.put(`/safe/record`,dataForm)
     
 }

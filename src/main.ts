@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { store } from './store'
+import { List,PullRefresh ,Button,RadioGroup, Radio, Field, CellGroup,Uploader  } from 'vant';
 import 'vant/lib/index.css'
 // normalize.css
 import 'normalize.css/normalize.css'
@@ -16,5 +17,12 @@ import router from './router'
 const app = createApp(App)
 app.use(store)
 app.use(router)
-
+app.use(List);
+app.use(PullRefresh);
+app.use(Button)
+app.use(Radio);
+app.use(RadioGroup);
+app.use(Field);
+app.use(CellGroup);
+app.use(Uploader );
 app.mount('#app')
