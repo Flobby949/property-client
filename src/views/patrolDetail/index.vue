@@ -3,9 +3,9 @@ import { cloneVNode, onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { getRecordDetail } from '@/api/safe/Trecords'
 const route = useRoute()
-const recordId = ref('')
-const recordDetail: RecordItem = reactive({})
-const photoUrl = reactive([])
+const recordId: any = ref('')
+const recordDetail: any = reactive({})
+const photoUrl: RecordItem | any = reactive([])
 
 onMounted(async () => {
 	recordId.value = route.params.recordId
@@ -13,7 +13,7 @@ onMounted(async () => {
 	getRecordDetail(recordId.value).then(res => {
 		Object.assign(recordDetail, res.data)
 		console.log(recordDetail)
-		const urls = recordDetail.photo.split('-')
+		const urls: any = recordDetail.photo.split('-')
 		console.log('-------------------------' + urls)
 		for (let i = 0; i < urls.length; i++) {
 			photoUrl.push(urls[i])

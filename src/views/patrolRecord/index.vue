@@ -57,11 +57,12 @@ import { onMounted, reactive, ref } from 'vue'
 import { useRecordsList } from '@/api/safe/Trecords'
 import router from '@/router'
 
+console.log('aaaa')
 //获取当前日期
 const date = new Date()
 
 const chooseDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()])
-const currentDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()])
+const currentDate: any = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()])
 const show = ref(false)
 //请求条件
 const dataform = reactive({
@@ -89,7 +90,7 @@ const getRecords = () => {
 	}).then(res => {
 		console.log(res.data)
 		total.value = res.data.total
-		res.data.list.forEach(element => {
+		res.data.list.forEach((element: any) => {
 			records.push(element)
 		})
 		// 加载状态结束
@@ -113,10 +114,11 @@ const clonsePopup = () => {
 	show.value = false
 }
 
-const selectDate = selectedValues => {
+const selectDate = (selectedValues: any) => {
 	chooseDate.value = []
 	chooseDate.value = [...selectedValues.selectedValues]
 	dataform.patrolDate = chooseDate.value[0] + '-' + chooseDate.value[1] + '-' + chooseDate.value[2]
+	dataform.page = 1
 	records.splice(0, records.length)
 	getRecords()
 	show.value = false
