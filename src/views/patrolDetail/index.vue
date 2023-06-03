@@ -48,7 +48,7 @@ interface RecordItem {
 </script>
 <template>
 	<div class="w-full bg-gray-100">
-		<NavBar title="巡更详情"> </NavBar>
+		<NavBar :fixed="true" :placeholder="true" title="巡更详情"> </NavBar>
 		<div class="bg-blue-500 rounded-b-[50px] h-[150px] w-[99%] mx-auto"></div>
 		<div class="bg-white w-[93%] mx-auto relative top-[-100px] border-t-[1px] border-r-[1px] border-slate-600">
 			<div v-if="recordDetail.type == 0" class="flex flex-row items-center justify-between border-b border-slate-300 border-dashed w-[100%] h-[50px]">
