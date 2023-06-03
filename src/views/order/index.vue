@@ -1,8 +1,12 @@
 <template>
 	<div class="bg-gray-50">
-		<div class="bg-white flex justify-center items-center h-[45px]">我的工单</div>
+		<!-- 标题栏开始 -->
+		<div class="bg-white fixed top-0 left-0 w-full flex justify-center items-center h-[45px]">我的工单</div>
+		<div class="bg-gray-50 w-full h-[5px] mt-[45px]"></div>
+		<!-- 标题栏结束 -->
+
 		<!-- 选项栏开始 -->
-		<div class="bg-white flex flex-row justify-center items-center h-[50px] mt-2">
+		<div class="bg-white flex flex-row justify-center items-center h-[50px]">
 			<div class="flex-1 flex justify-center items-center h-full" :class="{ activation: currentOption === 0 }" @click="changeCurrentOption(0)">
 				全部
 			</div>

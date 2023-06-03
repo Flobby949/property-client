@@ -14,7 +14,7 @@
 					<van-icon class="ml-1 mr-1" name="https://music-1307940544.cos.ap-nanjing.myqcloud.com/test/shangbao.png" size="22"></van-icon>
 				</template>
 			</van-cell>
-			<van-cell title="巡更记录" size="large" is-link>
+			<van-cell title="巡更记录" size="large" is-link @click="patrolRecordClick">
 				<template #icon>
 					<van-icon class="mr-1" name="https://music-1307940544.cos.ap-nanjing.myqcloud.com/test/xungeng.png" size="26"></van-icon>
 				</template>
@@ -33,6 +33,14 @@
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import router from '@/router'
+
+const patrolRecordClick = () => {
+	router.push({
+		path: '/patrolRecord'
+	})
+}
+</script>
 
 <style scoped></style>
