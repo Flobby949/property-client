@@ -2,7 +2,7 @@
 	<div class="bg-gray-100 h-[770px] pb-[50px]">
 		<!-- 轮播图开始 -->
 		<div>
-			<van-swipe class="bg-red-50 w-[99%] mx-auto h-[250px]" :autoplay="4000" indicator-color="white">
+			<van-swipe class="bg-red-50 w-[99%] mx-auto h-[200px]" :autoplay="4000" indicator-color="white">
 				<van-swipe-item v-for="image in images" :key="image">
 					<img :src="image" class="h-[250px] w-full" />
 				</van-swipe-item>
@@ -64,13 +64,13 @@
 			</div>
 			<div class="flex flex-row items-center mt-4">
 				<div class="w-[160px] h-[70px] bg-green-100 rounded-lg flex flex-row justify-between px-3 items-center">
-					<div>住户管理</div>
+					<div>远程开门</div>
 					<div class="w-[40px] h-[40px] bg-green-400 rounded-full flex flex-row justify-center items-center">
-						<img src="../../assets/home.png" width="20px" height="20px" />
+						<img src="../../assets/opendoor.png" width="20px" height="20px" />
 					</div>
 				</div>
 				<div class="w-[160px] h-[70px] bg-blue-100 rounded-lg ml-4 flex flex-row justify-between px-3 items-center">
-					<div>故障上报</div>
+					<div>工单大厅</div>
 					<div class="w-[40px] h-[40px] bg-blue-300 rounded-full flex flex-row justify-center items-center">
 						<img src="../../assets/page.png" width="20px" height="20px" />
 					</div>
