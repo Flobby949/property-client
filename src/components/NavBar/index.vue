@@ -9,6 +9,14 @@ const props = defineProps({
 	rightTitle: {
 		type: String,
 		default: ''
+	},
+	fixed: {
+		type: Boolean,
+		default: false
+	},
+	placeholder: {
+		type: Boolean,
+		default: false
 	}
 })
 const emit = defineEmits(['ClickRight'])
@@ -21,7 +29,16 @@ const onClickRight = () => {
 </script>
 
 <template>
-	<van-nav-bar :title="props.title" :right-text="props.rightTitle" left-arrow @click-left="onClickLeft" @click-right="onClickRight"> </van-nav-bar>
+	<van-nav-bar
+		:fixed="props.fixed"
+		:placeholder="props.placeholder"
+		:title="props.title"
+		:right-text="props.rightTitle"
+		left-arrow
+		@click-left="onClickLeft"
+		@click-right="onClickRight"
+	>
+	</van-nav-bar>
 </template>
 
 <style scoped></style>

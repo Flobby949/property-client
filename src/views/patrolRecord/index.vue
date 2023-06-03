@@ -1,6 +1,6 @@
 <template>
 	<div class="bg-gray-100">
-		<NavBar title="巡更记录"> </NavBar>
+		<NavBar :fixed="true" :placeholder="true" title="巡更记录"> </NavBar>
 		<div class="bg-blue-500 rounded-b-[50px] h-[150px] w-[99%] mx-auto">
 			<div class="flex flex-row justify-center relative top-8 mx-5 text-gray-400 font-semibold" @click="showPopup">
 				<div class="bg-white mx-auto w-[95px] rounded-sm h-12 flex flex-row items-center justify-center">{{ chooseDate[0] }} 年</div>
@@ -12,7 +12,7 @@
 			</van-popup>
 		</div>
 
-		<van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" class="w-[92%] mx-auto relative top-[-35px]" @load="onLoad">
+		<van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" class="w-[92%] mx-auto relative top-[-55px]" @load="onLoad">
 			<!-- 数据展示开始 -->
 			<div v-for="(item, index) in records" :key="index" class="w-[100%] h-[180px] bg-white mb-3">
 				<div v-if="item.type == 0" class="flex flex-row items-center justify-between border-b border-slate-300 border-dotted w-[100%] h-[50px]">
