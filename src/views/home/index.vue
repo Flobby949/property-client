@@ -101,6 +101,8 @@ const numberForm = reactive({
 	noPointNumber: ''
 })
 
+const inspectorId = ref(10004)
+
 const remoteClick = () => {
 	router.push({
 		path: '/remote'
@@ -108,22 +110,22 @@ const remoteClick = () => {
 }
 
 const getPatrolNumbers = () => {
-	useAllNumber().then(res => {
+	useAllNumber(inspectorId.value).then(res => {
 		console.log(res.data)
 		Object.assign(numberForm, res.data)
 	})
-	useOverNumber().then(res => {
+	useOverNumber(inspectorId.value).then(res => {
 		Object.assign(numberForm, res.data)
 	})
 
-	useNoNumber().then(res => {
+	useNoNumber(inspectorId.value).then(res => {
 		Object.assign(numberForm, res.data)
 	})
 }
 getPatrolNumbers()
 
 const toPatrol = () => {
-	router.push({ path: '/patrol' })
+	router.push({ path: '/patrol', query: { id: inspectorId.value } })
 }
 </script>
 

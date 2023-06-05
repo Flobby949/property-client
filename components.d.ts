@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    DoorItem: typeof import('./src/components/door-item/index.vue')['default']
     NavBar: typeof import('./src/components/NavBar/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -22,22 +21,12 @@ declare module '@vue/runtime-core' {
     VanCellGroup: typeof import('vant/es')['CellGroup']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
     VanDatePicker: typeof import('vant/es')['DatePicker']
-    VanDialog: typeof import('vant/es')['Dialog']
     VanField: typeof import('vant/es')['Field']
     VanForm: typeof import('vant/es')['Form']
-    VanIcon: typeof import('vant/es')['Icon']
-    VanImage: typeof import('vant/es')['Image']
     VanList: typeof import('vant/es')['List']
     VanNavBar: typeof import('vant/es')['NavBar']
-    VanNoticeBar: typeof import('vant/es')['NoticeBar']
-    VanPicker: typeof import('vant/es')['Picker']
     VanPopup: typeof import('vant/es')['Popup']
-    VanSidebar: typeof import('vant/es')['Sidebar']
-    VanSidebarItem: typeof import('vant/es')['SidebarItem']
-    VanSwipe: typeof import('vant/es')['Swipe']
-    VanSwipeItem: typeof import('vant/es')['SwipeItem']
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
-    VanTag: typeof import('vant/es')['Tag']
   }
 }
