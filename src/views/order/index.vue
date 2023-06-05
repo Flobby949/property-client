@@ -14,53 +14,223 @@
 				待解决
 			</div>
 			<div class="flex-1 flex justify-center items-center h-full" :class="{ activation: currentOption === 2 }" @click="changeCurrentOption(2)">
+				处理中
+			</div>
+			<div class="flex-1 flex justify-center items-center h-full" :class="{ activation: currentOption === 3 }" @click="changeCurrentOption(3)">
 				已完成
 			</div>
 		</div>
 		<!-- 选项栏结束 -->
-
 		<!-- 工单开始 -->
-		<!-- 全部  -->
-		<div v-show="currentOption == 0">
-			<div v-for="item in 6" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-100 border-[1px] rounded-md">
-				<!-- 工单第一行 -->
-				<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
-					<div class="text-base">幸福苑小区1号楼1单元入户门</div>
-					<div v-if="false" class="border-blue-500 border-[1px] w-[80px] h-[25px] text-sm rounded-md flex justify-center items-center text-blue-500">
-						公共报修
+		<van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+			<!-- 全部  -->
+			<div v-show="currentOption == 0">
+				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
+					<!-- 工单第一行 -->
+					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
+						<div class="text-base">{{ item.title }}</div>
+						<div
+							v-if="item.type == 0"
+							class="border-blue-500 border-[1px] w-[80px] h-[25px] text-sm rounded-md flex justify-center items-center text-blue-500"
+						>
+							公共报修
+						</div>
+						<div v-else class="border-blue-500 border-[1px] w-[80px] h-[25px] text-sm rounded-md flex justify-center items-center text-blue-500">
+							个人报修
+						</div>
 					</div>
-					<div v-else class="border-blue-500 border-[1px] w-[80px] h-[25px] text-sm rounded-md flex justify-center items-center text-blue-500">
-						个人报修
+					<!-- 工单第二行 -->
+					<div class="bg-gray-50 mt-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.content }}</div>
+					<!-- 第三行 -->
+					<div class="flex flex-row justify-between items-center mt-3">
+						<div class="text-gray-400">报修时间:{{ item.createTimeRepair }}</div>
+						<div v-if="item.state == 0" class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm">
+							待解决
+						</div>
+						<div v-if="item.state == 1" class="flex justify-center items-center bg-red-500 text-white w-[70px] h-[25px] rounded-full text-sm">
+							处理中
+						</div>
+						<div v-if="item.state == 2" class="flex justify-center items-center bg-gray-400 text-white w-[70px] h-[25px] rounded-full text-sm">
+							已完成
+						</div>
 					</div>
-				</div>
-				<!-- 工单第二行 -->
-				<div class="bg-gray-50 mt-2">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信服校园道路路灯不亮了，并且亮度不够，请物业公司即使更换，防止发生意外事故
-				</div>
-				<!-- 第三行 -->
-				<div class="flex flex-row justify-between items-center mt-3">
-					<div class="text-gray-400">报修时间:2023/06/02 18:21:45</div>
-					<div v-if="false" class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm">待解决</div>
-					<div v-else class="flex justify-center items-center bg-gray-400 text-white w-[70px] h-[25px] rounded-full text-sm">已完成</div>
 				</div>
 			</div>
 			<!-- 待解决 -->
-
+			<div v-show="currentOption == 1">
+				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
+					<!-- 工单第一行 -->
+					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
+						<div class="text-base">{{ item.title }}</div>
+						<div
+							v-if="item.type == 0"
+							class="border-blue-500 border-[1px] w-[80px] h-[25px] text-sm rounded-md flex justify-center items-center text-blue-500"
+						>
+							公共报修
+						</div>
+						<div v-else class="border-blue-500 border-[1px] w-[80px] h-[25px] text-sm rounded-md flex justify-center items-center text-blue-500">
+							个人报修
+						</div>
+					</div>
+					<!-- 工单第二行 -->
+					<div class="bg-gray-50 mt-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.content }}</div>
+					<!-- 第三行 -->
+					<div class="flex flex-row justify-between items-center mt-3">
+						<div class="text-gray-400">报修时间:{{ item.createTimeRepair }}</div>
+						<div v-if="item.state == 0" class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm">
+							待解决
+						</div>
+						<div v-if="item.state == 1" class="flex justify-center items-center bg-red-500 text-white w-[70px] h-[25px] rounded-full text-sm">
+							处理中
+						</div>
+						<div v-if="item.state == 2" class="flex justify-center items-center bg-gray-400 text-white w-[70px] h-[25px] rounded-full text-sm">
+							已完成
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 处理中 -->
+			<div v-show="currentOption == 2">
+				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
+					<!-- 工单第一行 -->
+					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
+						<div class="text-base">{{ item.title }}</div>
+						<div
+							v-if="item.type == 0"
+							class="border-blue-500 border-[1px] w-[80px] h-[25px] text-sm rounded-md flex justify-center items-center text-blue-500"
+						>
+							公共报修
+						</div>
+						<div v-else class="border-blue-500 border-[1px] w-[80px] h-[25px] text-sm rounded-md flex justify-center items-center text-blue-500">
+							个人报修
+						</div>
+					</div>
+					<!-- 工单第二行 -->
+					<div class="bg-gray-50 mt-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.content }}</div>
+					<!-- 第三行 -->
+					<div class="flex flex-row justify-between items-center mt-3">
+						<div class="text-gray-400">报修时间:{{ item.createTimeRepair }}</div>
+						<div v-if="item.state == 0" class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm">
+							待解决
+						</div>
+						<div v-if="item.state == 1" class="flex justify-center items-center bg-red-500 text-white w-[70px] h-[25px] rounded-full text-sm">
+							处理中
+						</div>
+						<div v-if="item.state == 2" class="flex justify-center items-center bg-gray-400 text-white w-[70px] h-[25px] rounded-full text-sm">
+							已完成
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- 已完成 -->
-		</div>
-		<!-- 工单结束 -->
+			<div v-show="currentOption == 3">
+				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
+					<!-- 工单第一行 -->
+					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
+						<div class="text-base">{{ item.title }}</div>
+						<div
+							v-if="item.type == 0"
+							class="border-blue-500 border-[1px] w-[80px] h-[25px] text-sm rounded-md flex justify-center items-center text-blue-500"
+						>
+							公共报修
+						</div>
+						<div v-else class="border-blue-500 border-[1px] w-[80px] h-[25px] text-sm rounded-md flex justify-center items-center text-blue-500">
+							个人报修
+						</div>
+					</div>
+					<!-- 工单第二行 -->
+					<div class="bg-gray-50 mt-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.content }}</div>
+					<!-- 第三行 -->
+					<div class="flex flex-row justify-between items-center mt-3">
+						<div class="text-gray-400">报修时间:{{ item.createTimeRepair }}</div>
+						<div v-if="item.state == 0" class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm">
+							待解决
+						</div>
+						<div v-if="item.state == 1" class="flex justify-center items-center bg-red-500 text-white w-[70px] h-[25px] rounded-full text-sm">
+							处理中
+						</div>
+						<div v-if="item.state == 2" class="flex justify-center items-center bg-gray-400 text-white w-[70px] h-[25px] rounded-full text-sm">
+							已完成
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 工单结束 -->
+		</van-list>
 	</div>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
+import { getRepairRecord } from '@/api/repair/repairRecord'
+import { userStore } from '@/store/modules/userInfo'
+
+const store = userStore()
+
+const { user } = store
+console.log(user)
+
+const total = ref(0)
+const loading = ref(false)
+const finished = ref(false)
+const querForm = reactive({
+	employeeIds: user.id,
+	status: '',
+	order: 'create_time',
+	asc: false,
+	page: 1,
+	limit: 7
+})
+
+onMounted(() => {
+	getRepairList()
+})
+
 const currentOption = ref(0)
 //需要显示的数据数组
 const workOrder = reactive([])
 
 const changeCurrentOption = value => {
 	currentOption.value = value
-	console.log(currentOption.value == 0)
+	if (value == 0) {
+		querForm.status = ''
+	} else if (value == 1) {
+		querForm.status = 0
+	} else if (value == 2) {
+		querForm.status = 1
+	} else if (value == 3) {
+		querForm.status = 2
+	}
+	//先将数组清空
+	workOrder.splice(0, workOrder.length)
+	querForm.page = 1
+	getRepairList()
+}
+
+const getRepairList = () => {
+	console.log(querForm)
+	getRepairRecord({
+		params: {
+			...querForm
+		}
+	}).then(res => {
+		console.log(res)
+		total.value = res.data.total
+		res.data.list.forEach(element => {
+			workOrder.push(element)
+		})
+		loading.value = false
+		// 数据全部加载完成
+		if (workOrder.length >= total.value) {
+			finished.value = true
+		}
+	})
+	console.log('aaa')
+}
+const onLoad = () => {
+	// 异步更新数据
+	querForm.page = querForm.page + 1
+	getRepairList()
 }
 </script>
 

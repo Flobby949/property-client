@@ -103,6 +103,14 @@ const routes: Array<RouteRecordRaw> = [
 		}
 	},
 	{
+		path: '/orderhall',
+		name: 'orderhall',
+		component: () => import('@/views/orderhall/index.vue'),
+		meta: {
+			title: '工单大厅'
+		}
+	},
+	{
 		path: '/orderDetail/:orderId',
 		name: 'orderDetail',
 		component: () => import('@/views/orderDetail/index.vue'),

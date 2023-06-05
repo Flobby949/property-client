@@ -41,6 +41,10 @@ import { showSuccessToast, showFailToast } from 'vant'
 import { login } from '@/api/user'
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { userStore } from '@/store/modules/userInfo'
+
+const store = userStore()
+const { getUserInfoAction } = store
 const router = useRouter()
 const form = reactive({
 	phone: '15729611641',
@@ -54,6 +58,7 @@ function onSubmit() {
 		}
 		showSuccessToast('登录成功')
 		localStorage.setItem('accessToken', res.data.accessToken)
+		getUserInfoAction(form.phone)
 		router.push('/')
 	})
 }
