@@ -1,58 +1,31 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-### [0.5.4](https://github.com/yulimchen/vue3-h5-template/compare/v0.5.3...v0.5.4) (2023-04-25)
-
-
-### 🚀 Chore | 构建/工程依赖/工具
-
-* 添加 `standard-version` 管理版本 ([40aee75](https://github.com/yulimchen/vue3-h5-template/commit/40aee757f7364da04437b55861c585b999495abd))
-
-
-### ✨ Features | 新功能
-
-* **layout:** 支持深/浅色模式切换 ([5178735](https://github.com/yulimchen/vue3-h5-template/commit/51787354cf25fe173d4b122b517a6738fdc56693))
-
-### [0.5.3](https://github.com/yulimchen/vue3-h5-template/compare/v0.5.2...v0.5.3) (2023-04-20)
+## 物业客户端前端提交记录
 
 
 ### Bug Fixes
 
-* **http:** 修复请求参数污染默认参数问题(fix [#28](https://github.com/yulimchen/vue3-h5-template/issues/28)) ([8795d91](https://github.com/yulimchen/vue3-h5-template/commit/8795d9138e9f42c52558804fc50d2aa8f06dad69))
-* **Tabbar:** 底栏样式调整 ([fedb12d](https://github.com/yulimchen/vue3-h5-template/commit/fedb12d137005e17707444c5af41e9d296916da1))
-* 修复 `postcss-mobile-forever` 插件导致颜色转换错误 (fix [#26](https://github.com/yulimchen/vue3-h5-template/issues/26)) ([5890ba1](https://github.com/yulimchen/vue3-h5-template/commit/5890ba11f441599976ba1f36008e5655fc558fd8))
-
-### [0.5.2](https://github.com/yulimchen/vue3-h5-template/compare/v0.5.1...v0.5.2) (2023-03-06)
-
-
-### Features
-
-* 支持 `tailwindcss` & 重构页面样式 ([982f81b](https://github.com/yulimchen/vue3-h5-template/commit/982f81bc6e9f36da2d48f136eb5986b3f6f1310b))
-
-### 0.5.1 (2023-02-20)
+* **custom:** 首页远程开门按钮交互、我的页面巡更记录交互 ([77d9e4a](https://github.com/yulimchen/vue3-h5-template/commit/77d9e4abdcf76412ebf49d4ac2e31b54eb8f6819))
+* **custom:** 修复巡更记录和巡更详情页面的TS类型类型报错提示 ([c53ee1b](https://github.com/yulimchen/vue3-h5-template/commit/c53ee1b977224400d621f12dd18297650c38f142))
+* **custom:** 修改页面小细节 ([7c9b9dc](https://github.com/yulimchen/vue3-h5-template/commit/7c9b9dcaeed01b4dd4f31c25b35e61664e301c61))
+* **custom:** 修改navBar为顶部固定 ([afdf8c8](https://github.com/yulimchen/vue3-h5-template/commit/afdf8c8ccae0ebe9908c8afd0aaa7930722faafa))
 
 
 ### Features
 
-* `axios` 封装 ([224e1cd](https://github.com/yulimchen/vue3-h5-template/commit/224e1cd1325ebe7c250976c56c548a91d3bd644b))
-* 按环境启用 `eruda` 调试工具 ([9be036d](https://github.com/yulimchen/vue3-h5-template/commit/9be036d84e6713ffcf4fc2c4b4991f0a4b3e86e3))
-* 加入 `Pinia` 结合完成组件缓存 ([70b1ccf](https://github.com/yulimchen/vue3-h5-template/commit/70b1ccf15ca8d16611cb50e58b1ecde27a25c44a))
-* 开发环境加入调试面板 ([fed71f5](https://github.com/yulimchen/vue3-h5-template/commit/fed71f58aae0ef13cda4e04b968144ac533b9acd))
-* 全局a标签样式重置 ([878789a](https://github.com/yulimchen/vue3-h5-template/commit/878789a5b2698a8ee393983332da9829036f619b))
-* 生产环境 `gzip` 压缩 ([ad884b9](https://github.com/yulimchen/vue3-h5-template/commit/ad884b9f8412b27562b47b1a254c8a57ef996e29))
-* 生产环境开启gzip打包 ([c73a060](https://github.com/yulimchen/vue3-h5-template/commit/c73a0609fdf8c5285e3a0199fd7c3cc6531c2163))
-* 视口 `vw/vh` 适配 ([fd66141](https://github.com/yulimchen/vue3-h5-template/commit/fd6614101648e05aad2f61aa4cad3649255df3f5))
-* 首屏加载动画 ([d8dfa93](https://github.com/yulimchen/vue3-h5-template/commit/d8dfa933ae60c2031bca8ef3f453a842a107a60f))
-* 添加 `svg-sprite` ([8bd1bab](https://github.com/yulimchen/vue3-h5-template/commit/8bd1bab01bfb6c846e6320577287f350e209e36b))
-* 页面根据路由 `title` 设置标签名 ([caff118](https://github.com/yulimchen/vue3-h5-template/commit/caff118021eafbb8a911fd1ab1fab283baa06dcb))
-* 增加vue-router ([2320803](https://github.com/yulimchen/vue3-h5-template/commit/23208030e6472bf9ee1de687fabbe1093ab03d08))
-* 支持 svg 图标自动引入 ([e9c0e9b](https://github.com/yulimchen/vue3-h5-template/commit/e9c0e9bbf62ae9cff339f601f6db81032262bd04))
-* 支持开发环境 `mock` ([f4626d0](https://github.com/yulimchen/vue3-h5-template/commit/f4626d088fd66ad076ac639b8d687d28f4f9dbcc))
+* **custom:** 封装客户端通用组件 ([60d356c](https://github.com/yulimchen/vue3-h5-template/commit/60d356c4002a8aedee13f4365eb507da563d73f0))
+* **custom:** 今日巡更和巡更记录的NavBar完成 ([283c968](https://github.com/yulimchen/vue3-h5-template/commit/283c9689d1eee85d6f8bd0ee3ae32b00944581cc))
+* **custom:** 今日巡更页面显示，请求调试 ([0345e31](https://github.com/yulimchen/vue3-h5-template/commit/0345e31ad61c5638aa7e3eb4c8599027ced538dd))
+* **custom:** 完成物业客户端基础配置 ([0507ca2](https://github.com/yulimchen/vue3-h5-template/commit/0507ca2d69cda7c15c4f442930bc8b75a6382bd0))
+* **custom:** 完成物业app端巡更记录查询 ([6ea84b8](https://github.com/yulimchen/vue3-h5-template/commit/6ea84b8c722bae5dfcb27aefc2010067ba69e1c8))
+* **custom:** 完成账号登录和忘记密码 ([ae9cc43](https://github.com/yulimchen/vue3-h5-template/commit/ae9cc4332bfab6f945dc1baf3136380af67b341d))
+* **custom:** 我的工单页面布局完成 ([1007a2d](https://github.com/yulimchen/vue3-h5-template/commit/1007a2d9333ea9ae7ba2423d8fc66b945961c00a))
+* **custom:** 我的页面 ([c33f019](https://github.com/yulimchen/vue3-h5-template/commit/c33f019630ef875d4bac8e316da6cf2982670ff7))
+* **custom:** 物业端APP首页布局完成 ([0577a9c](https://github.com/yulimchen/vue3-h5-template/commit/0577a9c5b08606995f32187d90b250cd0237090b))
+* **custom:** 物业客户端首页今日巡更 ([c837720](https://github.com/yulimchen/vue3-h5-template/commit/c837720ff291dc8b6e8bd1372677d712c563aff2))
+* **custom:** 项目框架初始化 ([f1fd3b7](https://github.com/yulimchen/vue3-h5-template/commit/f1fd3b78c3de60853a75d4f37c215bc8858ffb0f))
+* **custom:** 巡更记录页面完成 ([e16f8ca](https://github.com/yulimchen/vue3-h5-template/commit/e16f8cafa9a3cade1a4443f3cfa20afcd14ebbaa))
+* **custom:** 巡检详情页面完成，查询详情功能完成 ([24331ad](https://github.com/yulimchen/vue3-h5-template/commit/24331adf7d3558812344ec346e6490ed4b3f3586))
+* **custom:** 远程开门 ([8362c92](https://github.com/yulimchen/vue3-h5-template/commit/8362c92dcdd1e732f51b003bc74ab1c268fdfe67))
+* **custom:** api测试 ([28070ff](https://github.com/yulimchen/vue3-h5-template/commit/28070ff57f304a8835b252df762f2d1bf4db82c0))
 
 
-### Bug Fixes
 
-* **index.html:** 避免环境变量缺少导致页面错误 ([9584156](https://github.com/yulimchen/vue3-h5-template/commit/95841560ad5237bc35c6088c587cc105cc1dce5d))
-* **SvgIcon:** 不解构使用props，避免数据失去reactive ([c6f3f07](https://github.com/yulimchen/vue3-h5-template/commit/c6f3f07303065054df4e1fc3d6b250edd4db00bf))
-* **Tabbar:** 开启路由模式 ([1e61c5a](https://github.com/yulimchen/vue3-h5-template/commit/1e61c5a3555ced9bd6a5bf62302a2252bf01e12b))
