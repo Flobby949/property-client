@@ -97,12 +97,16 @@ const onSubmit = () => {
 	dataForm.value.notes = textValue.value
 	for (let index = 0; index < fileList.value.length; index++) {
 		let element = fileList.value[index]
-
-		if (dataForm.value.photo == '') {
+		if (dataForm.value.photo != '') {
+			console.log('执行过吗')
+			dataForm.value.photo = dataForm.value.photo + '*' + element
+		}
+		if (dataForm.value.photo === '') {
+			console.log('执行过了')
 			dataForm.value.photo = element
 		}
-		dataForm.value.photo = dataForm.value.photo + ',' + element
 	}
+	console.log('所有照片' + dataForm.value.photo)
 
 	console.log('dataform:' + dataForm.value)
 	useSubmitRecord(dataForm.value).then(res => {

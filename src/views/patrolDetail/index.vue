@@ -9,11 +9,13 @@ const photoUrl: RecordItem | any = reactive([])
 
 onMounted(async () => {
 	recordId.value = route.params.recordId
+	console.log('route:' + route.params.recordId)
+
 	console.log(recordId.value)
 	getRecordDetail(recordId.value).then(res => {
 		Object.assign(recordDetail, res.data)
 		console.log(recordDetail)
-		const urls: any = recordDetail.photo.split('-')
+		const urls: any = recordDetail.photo.split('*')
 		console.log('-------------------------' + urls)
 		for (let i = 0; i < urls.length; i++) {
 			photoUrl.push(urls[i])

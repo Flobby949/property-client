@@ -33,7 +33,7 @@
 						>
 					</div>
 
-					<div v-if="item.status == 1" class="flex-1 relative right-8">
+					<div v-if="item.status == 1" class="flex-1 relative">
 						<van-button type="primary" round size="small" class="w-[80px] relative bottom-[8px] left-5" style="height: 28px" color="#ad9ea0"
 							>已巡更</van-button
 						>
@@ -61,7 +61,14 @@
 						>
 					</div>
 					<div v-if="item.status == 1" class="relative right-9">
-						<van-button type="danger" round size="small" class="w-[80px] relative top-5 left-6 text-[20px]" style="height: 28px" color="#5798e3"
+						<van-button
+							type="danger"
+							round
+							size="small"
+							class="w-[80px] relative top-5 left-6 text-[20px]"
+							style="height: 28px"
+							color="#5798e3"
+							@click="DetailClick(item.id)"
 							>查看</van-button
 						>
 					</div>
@@ -111,6 +118,11 @@ const rightClick = () => {
 	router.push({ path: '/patrolRecord' })
 }
 
+const DetailClick = (id: any) => {
+	console.log(id)
+
+	router.push({ name: 'patrolDetail', params: { recordId: id } })
+}
 const onSubmit = (item: any) => {
 	console.log('你好' + item.title)
 	console.log('你好' + item)
