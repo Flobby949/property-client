@@ -25,7 +25,7 @@
 		<van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
 			<!-- 全部  -->
 			<div v-show="currentOption == 0">
-				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-100 border-[1px] rounded-md">
+				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
 					<!-- 工单第一行 -->
 					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
 						<div class="text-base">{{ item.title }}</div>
@@ -58,7 +58,7 @@
 			</div>
 			<!-- 待解决 -->
 			<div v-show="currentOption == 1">
-				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-100 border-[1px] rounded-md">
+				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
 					<!-- 工单第一行 -->
 					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
 						<div class="text-base">{{ item.title }}</div>
@@ -91,7 +91,7 @@
 			</div>
 			<!-- 处理中 -->
 			<div v-show="currentOption == 2">
-				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-100 border-[1px] rounded-md">
+				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
 					<!-- 工单第一行 -->
 					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
 						<div class="text-base">{{ item.title }}</div>
@@ -124,7 +124,7 @@
 			</div>
 			<!-- 已完成 -->
 			<div v-show="currentOption == 3">
-				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-100 border-[1px] rounded-md">
+				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
 					<!-- 工单第一行 -->
 					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
 						<div class="text-base">{{ item.title }}</div>

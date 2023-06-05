@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import {useUserInfoApi} from '@/api/user'
 
 export const userStore = defineStore('userStore', {
-    state:()=>({
+    state: () => ({
         user: {
 			id: '',
 			username: ''

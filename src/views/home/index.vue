@@ -69,7 +69,7 @@
 						<img class="icon" src="../../assets/opendoor.png" />
 					</div>
 				</div>
-				<div class="w-[160px] h-[70px] bg-blue-100 rounded-lg ml-4 flex flex-row justify-between px-3 items-center">
+				<div class="w-[160px] h-[70px] bg-blue-100 rounded-lg ml-4 flex flex-row justify-between px-3 items-center" @click="hallClick">
 					<div>工单大厅</div>
 					<div class="w-[40px] h-[40px] bg-blue-300 rounded-full flex flex-row justify-center items-center">
 						<img class="icon" src="../../assets/page.png" />
@@ -124,6 +124,10 @@ getPatrolNumbers()
 
 const toPatrol = () => {
 	router.push({ path: '/patrol' })
+}
+
+const hallClick = () => {
+	router.push({ path: '/orderhall' })
 }
 </script>
 
