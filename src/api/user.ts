@@ -14,3 +14,8 @@ export function sendSms(phone: string) {
 export function forget(data: any) {
 	return service.post('/auth/repassword', data)
 }
+
+//获取用户信息
+export function useUserInfoApi(phone : string){
+	return service.get('/auth/info', {params:{phone: phone}})
+}
