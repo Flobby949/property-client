@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    DoorItem: typeof import('./src/components/door-item/index.vue')['default']
     NavBar: typeof import('./src/components/NavBar/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -21,27 +20,13 @@ declare module '@vue/runtime-core' {
     VanCell: typeof import('vant/es')['Cell']
     VanCellGroup: typeof import('vant/es')['CellGroup']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
+    VanDatePicker: typeof import('vant/es')['DatePicker']
     VanField: typeof import('vant/es')['Field']
     VanForm: typeof import('vant/es')['Form']
-<<<<<<< HEAD
-    VanImage: typeof import('vant/es')['Image']
     VanList: typeof import('vant/es')['List']
     VanNavBar: typeof import('vant/es')['NavBar']
-    VanRadio: typeof import('vant/es')['Radio']
-    VanRadioGroup: typeof import('vant/es')['RadioGroup']
-=======
-    VanIcon: typeof import('vant/es')['Icon']
-    VanImage: typeof import('vant/es')['Image']
-    VanNavBar: typeof import('vant/es')['NavBar']
-    VanNoticeBar: typeof import('vant/es')['NoticeBar']
-    VanSidebar: typeof import('vant/es')['Sidebar']
-    VanSidebarItem: typeof import('vant/es')['SidebarItem']
-    VanSwipe: typeof import('vant/es')['Swipe']
-    VanSwipeItem: typeof import('vant/es')['SwipeItem']
-    VanSwitch: typeof import('vant/es')['Switch']
->>>>>>> origin/test
+    VanPopup: typeof import('vant/es')['Popup']
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
-    VanUploader: typeof import('vant/es')['Uploader']
   }
 }

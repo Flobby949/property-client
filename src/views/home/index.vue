@@ -2,9 +2,9 @@
 	<div class="bg-gray-100 h-[770px] pb-[50px]">
 		<!-- 轮播图开始 -->
 		<div>
-			<van-swipe class="bg-red-50 w-[99%] mx-auto h-[250px]" :autoplay="4000" indicator-color="white">
+			<van-swipe class="bg-red-50 w-[99%] mx-auto h-[200px]" :autoplay="4000" indicator-color="white">
 				<van-swipe-item v-for="image in images" :key="image">
-					<img :src="image" class="h-[250px] w-full" />
+					<img :src="image" class="h-[200px] w-full" />
 				</van-swipe-item>
 			</van-swipe>
 		</div>
@@ -52,27 +52,27 @@
 				<div class="w-[160px] h-[70px] bg-red-100 rounded-lg flex flex-row justify-between px-3 items-center">
 					<div>住户管理</div>
 					<div class="w-[40px] h-[40px] bg-blue-400 rounded-full flex flex-row justify-center items-center">
-						<img src="../../assets/home.png" width="20px" height="20px" />
+						<img src="../../assets/home.png" class="icon" />
 					</div>
 				</div>
 				<div class="w-[160px] h-[70px] bg-purple-100 rounded-lg ml-4 flex flex-row justify-between px-3 items-center">
 					<div>故障上报</div>
 					<div class="w-[40px] h-[40px] bg-red-400 rounded-full flex flex-row justify-center items-center">
-						<img src="../../assets/weixian.png" width="25px" height="25px" />
+						<img src="../../assets/weixian.png" class="icon1" />
 					</div>
 				</div>
 			</div>
 			<div class="flex flex-row items-center mt-4">
-				<div class="w-[160px] h-[70px] bg-green-100 rounded-lg flex flex-row justify-between px-3 items-center">
-					<div>住户管理</div>
+				<div class="w-[160px] h-[70px] bg-green-100 rounded-lg flex flex-row justify-between px-3 items-center" @click="remoteClick">
+					<div>远程开门</div>
 					<div class="w-[40px] h-[40px] bg-green-400 rounded-full flex flex-row justify-center items-center">
-						<img src="../../assets/home.png" width="20px" height="20px" />
+						<img class="icon" src="../../assets/opendoor.png" />
 					</div>
 				</div>
 				<div class="w-[160px] h-[70px] bg-blue-100 rounded-lg ml-4 flex flex-row justify-between px-3 items-center">
-					<div>故障上报</div>
+					<div>工单大厅</div>
 					<div class="w-[40px] h-[40px] bg-blue-300 rounded-full flex flex-row justify-center items-center">
-						<img src="../../assets/page.png" width="20px" height="20px" />
+						<img class="icon" src="../../assets/page.png" />
 					</div>
 				</div>
 			</div>
@@ -85,6 +85,9 @@
 import { useOverNumber, useNoNumber, useAllNumber } from '@/api/safe/record.ts'
 import { reactive, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+const width = ref('20px')
+
+const router = useRouter()
 
 const images = reactive([
 	'https://img1.baidu.com/it/u=3086004583,4040837842&fm=253&fmt=auto&app=138&f=JPEG?w=929&h=500',
@@ -97,7 +100,15 @@ const numberForm = reactive({
 	overPointNumber: '',
 	noPointNumber: ''
 })
+
 const inspectorId = ref(10004)
+
+const remoteClick = () => {
+	router.push({
+		path: '/remote'
+	})
+}
+
 const getPatrolNumbers = () => {
 	useAllNumber(inspectorId.value).then(res => {
 		console.log(res.data)
@@ -113,8 +124,6 @@ const getPatrolNumbers = () => {
 }
 getPatrolNumbers()
 
-const router = useRouter()
-
 const toPatrol = () => {
 	router.push({ path: '/patrol', query: { id: inspectorId.value } })
 }
@@ -124,5 +133,13 @@ const toPatrol = () => {
 .notice-swipe {
 	height: 40px;
 	line-height: 40px;
+}
+.icon {
+	width: 20px;
+	height: 20px;
+}
+.icon1 {
+	width: 25px;
+	height: 25px;
 }
 </style>
