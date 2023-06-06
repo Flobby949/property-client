@@ -43,7 +43,11 @@
 					<!-- 第三行 -->
 					<div class="flex flex-row justify-between items-center mt-3">
 						<div class="text-gray-400">报修时间:{{ item.createTimeRepair }}</div>
-						<div v-if="item.state == 0" class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm">
+						<div
+							v-if="item.state == 0"
+							class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm"
+							@click="submitClick(item.id)"
+						>
 							待解决
 						</div>
 						<div v-if="item.state == 1" class="flex justify-center items-center bg-red-500 text-white w-[70px] h-[25px] rounded-full text-sm">
@@ -78,7 +82,11 @@
 					<!-- 第三行 -->
 					<div class="flex flex-row justify-between items-center mt-3">
 						<div class="text-gray-400">报修时间:{{ item.createTimeRepair }}</div>
-						<div v-if="item.state == 0" class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm">
+						<div
+							v-if="item.state == 0"
+							class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm"
+							@click="submitClick(item.id)"
+						>
 							待解决
 						</div>
 						<div v-if="item.state == 1" class="flex justify-center items-center bg-red-500 text-white w-[70px] h-[25px] rounded-full text-sm">
@@ -201,6 +209,17 @@ const onLoad = () => {
 const orderClick = id => {
 	router.push({
 		name: 'orderDetail',
+		params: {
+			orderId: id
+		}
+	})
+}
+
+// 报修上报被点击
+//传递orderRecordId
+const submitClick = id => {
+	router.push({
+		name: 'orderSubmit',
 		params: {
 			orderId: id
 		}

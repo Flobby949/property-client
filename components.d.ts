@@ -32,6 +32,8 @@ declare module '@vue/runtime-core' {
     VanNoticeBar: typeof import('vant/es')['NoticeBar']
     VanPicker: typeof import('vant/es')['Picker']
     VanPopup: typeof import('vant/es')['Popup']
+    VanRadio: typeof import('vant/es')['Radio']
+    VanRadioGroup: typeof import('vant/es')['RadioGroup']
     VanSidebar: typeof import('vant/es')['Sidebar']
     VanSidebarItem: typeof import('vant/es')['SidebarItem']
     VanSwipe: typeof import('vant/es')['Swipe']
@@ -39,5 +41,6 @@ declare module '@vue/runtime-core' {
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
     VanTag: typeof import('vant/es')['Tag']
+    VanUploader: typeof import('vant/es')['Uploader']
   }
 }

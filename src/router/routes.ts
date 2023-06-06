@@ -117,6 +117,14 @@ const routes: Array<RouteRecordRaw> = [
 		meta: {
 			title: '工单详情'
 		}
+	},
+	{
+		path: '/orderSubmit/:orderId',
+		name: 'orderSubmit',
+		component: () => import('@/views/ordersubmit/index.vue'),
+		meta: {
+			title: '保修上报'
+		}
 	}
 ]
 
