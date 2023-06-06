@@ -2,7 +2,7 @@ import axios from 'axios'
 import type { AxiosError, InternalAxiosRequestConfig, AxiosResponse } from 'axios'
 import NProgress from 'nprogress'
 const service = axios.create({
-	baseURL: 'http://localhost:8080',
+	baseURL: 'http://localhost:8083',
 	timeout: 5000
 })
 
