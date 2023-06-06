@@ -55,7 +55,12 @@
 		<van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
 			<!-- 全部  -->
 			<div v-show="currentOption == 0">
-				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
+				<div
+					v-for="item in workOrder"
+					:key="item"
+					class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md"
+					@click="orderClick(item.id)"
+				>
 					<!-- 工单第一行 -->
 					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
 						<div class="text-base">{{ item.title }}</div>
@@ -80,16 +85,21 @@
 						>
 							分配
 						</div>
-						<div v-else class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm">待解决</div>
 						<div v-if="item.state == 2" class="flex justify-center items-center bg-gray-400 text-white w-[70px] h-[25px] rounded-full text-sm">
 							已完成
 						</div>
+						<div v-else class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm">待解决</div>
 					</div>
 				</div>
 			</div>
 			<!-- 待分配 -->
 			<div v-show="currentOption == 1">
-				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
+				<div
+					v-for="item in workOrder"
+					:key="item"
+					class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md"
+					@click="orderClick(item.id)"
+				>
 					<!-- 工单第一行 -->
 					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
 						<div class="text-base">{{ item.title }}</div>
@@ -114,7 +124,12 @@
 			</div>
 			<!-- 待解决 -->
 			<div v-show="currentOption == 2">
-				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
+				<div
+					v-for="item in workOrder"
+					:key="item"
+					class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md"
+					@click="orderClick(item.id)"
+				>
 					<!-- 工单第一行 -->
 					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
 						<div class="text-base">{{ item.title }}</div>
@@ -148,7 +163,12 @@
 
 			<!-- 已完成 -->
 			<div v-show="currentOption == 3">
-				<div v-for="item in workOrder" :key="item" class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md">
+				<div
+					v-for="item in workOrder"
+					:key="item"
+					class="w-[95%] mt-1 mb-1 mx-auto bg-white px-2 pb-2 border-slate-200 border-[1px] rounded-md"
+					@click="orderClick(item.id)"
+				>
 					<!-- 工单第一行 -->
 					<div class="flex flex-row justify-between items-center h-[40px] border-b-[1px] border-dashed">
 						<div class="text-base">{{ item.title }}</div>
@@ -187,6 +207,7 @@
 <script setup>
 import NavBar from '@/components/NavBar/index.vue'
 import { ref, reactive, onMounted } from 'vue'
+import router from '@/router'
 import { getRepair } from '@/api/repair/repairRecord'
 const currentOption = ref(0)
 const leve2CurrentOption = ref(0)
@@ -264,6 +285,16 @@ const onLoad = () => {
 	// 异步更新数据
 	querForm.page = querForm.page + 1
 	getOrderLists()
+}
+
+//工单被点击
+const orderClick = id => {
+	router.push({
+		name: 'orderDetail',
+		params: {
+			orderId: id
+		}
+	})
 }
 </script>
 
