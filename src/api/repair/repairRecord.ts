@@ -14,3 +14,8 @@ export function getRepair(data){
 export function getRepairById(orderId){
     return service.get(`/repair/repair/`+orderId)
 }
+
+//根据保修记录表id查询
+export function getRepairRecordById(orderId){
+    return service.get(`/repair/record/`+orderId)
+}
