@@ -165,6 +165,7 @@ const onSubmit = () => {
 					//上传完后进行后续操作
 					uploadOrder(updateForm).then(res => {
 						if (res.code == 1) {
+							router.back()
 						}
 					})
 				})
