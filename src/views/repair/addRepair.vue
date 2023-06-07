@@ -79,7 +79,7 @@ const afterRead = async (file: any) => {
 	const formData = new FormData()
 	console.log(file.file)
 	formData.append('file', file.file)
-	uploadFile(formData).then(res => {
+	uploadFile(formData).then((res: any) => {
 		file.status = 'done'
 		file.message = '上传成功'
 		// console.log(res.data.url)

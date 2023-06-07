@@ -22,3 +22,8 @@ export const useSubmitRecord = (dataForm: any) => {
 export const useUploadImage = (url: any, file: any) => {
 	return service.post(url, file)
 }
+
+export function uploadFile(data:any){
+	return service.post('/safe/record/upload', data)
+}
+
