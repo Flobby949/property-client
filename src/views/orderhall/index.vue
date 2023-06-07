@@ -79,6 +79,7 @@
 						<div
 							v-if="item.employeeIds == '' || item.employeeIds == null"
 							class="flex justify-center items-center bg-red-500 text-white w-[70px] h-[25px] rounded-full text-sm"
+							@click="allowcationClick(item.id)"
 						>
 							分配
 						</div>
@@ -117,7 +118,12 @@
 					<!-- 第三行 -->
 					<div class="flex flex-row justify-between items-center mt-3">
 						<div class="text-gray-400">报修时间:{{ item.createTime }}</div>
-						<div class="flex justify-center items-center bg-red-500 text-white w-[70px] h-[25px] rounded-full text-sm">分配</div>
+						<div
+							class="flex justify-center items-center bg-red-500 text-white w-[70px] h-[25px] rounded-full text-sm"
+							@click="allowcationClick(item.id)"
+						>
+							分配
+						</div>
 					</div>
 				</div>
 			</div>
@@ -201,7 +207,7 @@
 import NavBar from '@/components/NavBar/index.vue'
 import { ref, reactive, onMounted } from 'vue'
 import router from '@/router'
-import { getRepair } from '@/api/repair/repairRecord'
+import { getRepair, getUserList } from '@/api/repair/repairRecord'
 const currentOption = ref(0)
 const leve2CurrentOption = ref(0)
 const workOrder = reactive([])
@@ -284,6 +290,14 @@ const onLoad = () => {
 const orderClick = id => {
 	router.push({
 		name: 'orderDetail',
+		params: {
+			orderId: id
+		}
+	})
+}
+const allowcationClick = id => {
+	router.push({
+		name: 'allocation',
 		params: {
 			orderId: id
 		}
