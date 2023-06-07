@@ -44,7 +44,7 @@
 				<div class="flex mt-3 ml-5">
 					<div class="text-slate-400 flex-grow">
 						<div v-if="item.type == 0" class="text-[16px] font-normal">巡检类型:巡更点</div>
-						<div v-if="item.type == 1" class="text-[16px] font-normal">巡检类型:巡更项目</div>
+						<div v-if="item.type == 1" class="text-[16px] font-normal">巡检类型:巡检项目</div>
 
 						<div class="text-[16px] font-normal mt-[2px]">巡检时间：{{ item.startTime }}-{{ item.endTime }}</div>
 						<div class="text-[16px] font-normal mt-[1px]">巡检人：{{ item.realname }}</div>
@@ -90,7 +90,6 @@ const router = useRouter()
 const route = useRoute()
 const userId = route.query.id
 const id = userId
-console.log(id + 'jsdfiklsdjfkljsdklj')
 
 const numberForm = reactive({
 	pointNumber: '',
@@ -100,12 +99,9 @@ const numberForm = reactive({
 const inspectorId = ref(10004)
 const getPatrolNumbers = () => {
 	useAllNumber(id).then(res => {
-		console.log(res.data)
-
 		Object.assign(numberForm, res.data)
 	})
 	useOverNumber(id).then(res => {
-		console.log(res.data)
 		Object.assign(numberForm, res.data)
 	})
 
@@ -119,13 +115,12 @@ const rightClick = () => {
 }
 
 const DetailClick = (id: any) => {
-	console.log(id)
-
 	router.push({ name: 'patrolDetail', params: { recordId: id } })
 }
 const onSubmit = (item: any) => {
-	console.log('你好' + item.title)
-	console.log('你好' + item)
+	console.log('你好' + item.wayName)
+	console.log(item)
+	console.log(list.values)
 
 	router.push({ path: '/submitPatrol', query: { item: JSON.stringify(item) } })
 	// router.push({ path: '/submitPatrol', query: item })
