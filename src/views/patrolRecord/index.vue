@@ -68,10 +68,11 @@ const date = new Date()
 const chooseDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()])
 const currentDate: any = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()])
 const show = ref(false)
+const inspectorId = localStorage.getItem('user')
 //请求条件
 const dataform = reactive({
 	patrolDate: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(),
-	inspectorId: 10004,
+	inspectorId: inspectorId,
 	order: '',
 	asc: false,
 	page: 1,
