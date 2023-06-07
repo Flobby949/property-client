@@ -82,24 +82,27 @@
 			</div>
 		</div>
 		<div class="w-[340px] mx-auto mt-[210px]">报修处理</div>
-		<div class="w-[340px] h-[250px] bg-white mx-auto mt-1 border-2 border-stone-200 rounded-lg flex flex-col px-2">
-			<div class="flex flex-col items-center mt-5">
-				<van-field
-					v-model="updateForm.result"
-					type="textarea"
-					placeholder="请写下详细报修内容"
-					class="border mx-auto rounded-md h-[130px]"
-					style="width: 320px"
-				/>
+		<van-form @submit="onSubmit">
+			<div class="w-[340px] h-[250px] bg-white mx-auto mt-1 border-2 border-stone-200 rounded-lg flex flex-col px-2">
+				<div class="flex flex-col items-center mt-5">
+					<van-field
+						v-model="updateForm.result"
+						type="textarea"
+						placeholder="请写下详细报修内容"
+						class="border mx-auto rounded-md h-[130px]"
+						style="width: 320px"
+						:rules="[{ required: true, message: '不能为空' }]"
+					/>
+				</div>
+				<!-- 文件上传 -->
+				<div class="mt-1">
+					<van-uploader v-model="fileList" multiple :after-read="afterRead" @delete="picDelete" />
+				</div>
+				<div class="flex flex-col items-center mt-5">
+					<van-button type="primary" native-type="submit" round class="w-[200px]" style="height: 40px">提交</van-button>
+				</div>
 			</div>
-			<!-- 文件上传 -->
-			<div class="mt-1">
-				<van-uploader v-model="fileList" multiple />
-			</div>
-		</div>
-		<div class="flex flex-col items-center mt-5" @click="onSubmit()">
-			<van-button type="primary" round class="w-[200px]" style="height: 40px">提交</van-button>
-		</div>
+		</van-form>
 	</div>
 </template>
 
@@ -108,16 +111,18 @@ import NavBar from '@/components/NavBar/index.vue'
 import router from '@/router'
 import { useRoute } from 'vue-router'
 import { onMounted, ref, reactive } from 'vue'
-import { getRepairRecordById } from '@/api/repair/repairRecord'
+import { getRepairRecordById, uploadOrder } from '@/api/repair/repairRecord'
+import service from '@/utils/http'
+import { showNotify } from 'vant'
 const recordId = ref('')
 const route = useRoute()
 const orderDetail = ref('')
 const fileList = ref([])
 const updateForm = reactive({
 	id: '',
-	recordId: '',
+	repairId: '',
 	employeeIds: '',
-	state: '',
+	state: 2,
 	result: '',
 	imgs: ''
 })
@@ -132,10 +137,43 @@ const getDetail = id => {
 		orderDetail.value = res.data
 		updateForm.id = recordId.value
 		updateForm.employeeIds = orderDetail.value.employeeIds
-		updateForm.recordId = orderDetail.value.id
+		updateForm.repairId = orderDetail.value.id
 	})
 }
-const onSubmit = () => {}
+const tokan = localStorage.getItem('accessToken')
+//文件上传后的函数
+const afterRead = file => {
+	// 此时可以自行将文件上传至服务器
+	console.log(fileList.value)
+}
+
+const onSubmit = () => {
+	if (fileList.value.length > 0) {
+		//上传同时先进性图片的上传
+		fileList.value.forEach(element => {
+			const formData = new FormData()
+			formData.append('file', element.file)
+			service
+				.post('/repair/record/upload?accessToken=' + tokan, formData, {
+					headers: {
+						'Content-Type': 'multipart/form-data'
+					}
+				})
+				.then(res => {
+					updateForm.imgs += res.data.url + ','
+					console.log(updateForm)
+					//上传完后进行后续操作
+					uploadOrder(updateForm).then(res => {
+						if (res.code == 1) {
+						}
+					})
+				})
+		})
+	} else {
+		// 警告通知
+		showNotify({ color: '#FFFFFF', message: '请上传图片', background: '#3399FF' })
+	}
+}
 </script>
 
 <style scoped></style>
