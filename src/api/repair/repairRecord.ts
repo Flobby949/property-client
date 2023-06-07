@@ -27,3 +27,13 @@ export function uploadOrder(uploadForm){
     return service.put('/repair/record',uploadForm)
 
 }
+
+//查询所有用户
+export function getUserList(){
+    return service.get('/repair/repair/getUser')
+}
+
+//分配
+export function useallowcation(dataform){
+    return service.put('/repair/repair/allowcation',dataform)
+}
