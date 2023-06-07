@@ -29,7 +29,7 @@ router.beforeEach((to: toRouteType, from, next) => {
 	}
 
 	// 页面 title
-	document.title = '智慧管家业主' + '-' + to.meta.title
+	document.title = '智慧管家物业' + '-' + to.meta.title
 	next()
 })
 
