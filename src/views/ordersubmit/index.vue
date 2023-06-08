@@ -149,6 +149,7 @@ const afterRead = file => {
 
 const onSubmit = () => {
 	if (fileList.value.length > 0) {
+		const arr = []
 		//上传同时先进性图片的上传
 		fileList.value.forEach(element => {
 			const formData = new FormData()
@@ -160,8 +161,10 @@ const onSubmit = () => {
 					}
 				})
 				.then(res => {
-					updateForm.imgs += res.data.url + ','
-					console.log(updateForm)
+					// updateForm.imgs += res.data.url + ','
+					arr.push(res.data.url)
+					console.log(arr)
+					updateForm.imgs = arr.join(',')
 					//上传完后进行后续操作
 					uploadOrder(updateForm).then(res => {
 						if (res.code == 1) {
