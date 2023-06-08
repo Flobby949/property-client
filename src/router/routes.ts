@@ -126,6 +126,31 @@ const routes: Array<RouteRecordRaw> = [
 			title: '保修上报'
 		}
 	},
+
+	{
+		path: '/repair',
+		name: 'repair',
+		component: () => import('@/views/repair/repair.vue'),
+		meta: {
+			title: '在线报修'
+		}
+	},
+	{
+		path: '/addRepair/:type',
+		name: 'addRepair',
+		component: () => import('@/views/repair/addRepair.vue'),
+		meta: {
+			title: '添加报修'
+		}
+	},
+	{
+		path: '/repairDetail/:repairId',
+		name: 'repairDetail',
+		component: () => import('@/views/repair/repairDetail.vue'),
+		meta: {
+			title: '报修详情'
+		}
+	},
 	{
 		path: '/allocation/:orderId',
 		name: 'allocation',

@@ -57,7 +57,7 @@
 				</div>
 				<div class="w-[160px] h-[70px] bg-purple-100 rounded-lg ml-4 flex flex-row justify-between px-3 items-center">
 					<div>故障上报</div>
-					<div class="w-[40px] h-[40px] bg-red-400 rounded-full flex flex-row justify-center items-center">
+					<div class="w-[40px] h-[40px] bg-red-400 rounded-full flex flex-row justify-center items-center" @click="repair">
 						<img src="../../assets/weixian.png" class="icon1" />
 					</div>
 				</div>
@@ -109,6 +109,11 @@ const remoteClick = () => {
 	})
 }
 
+const repair = () => {
+	router.push({
+		path: '/repair'
+	})
+}
 const getPatrolNumbers = () => {
 	useAllNumber(inspectorId.value).then(res => {
 		console.log(res.data)
