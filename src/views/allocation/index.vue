@@ -43,7 +43,8 @@ const userList = ref([])
 const columns = []
 const updateForm = reactive({
 	employeeIds: '',
-	id: ''
+	id: '',
+	state: 1
 })
 
 onMounted(() => {

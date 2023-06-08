@@ -150,12 +150,10 @@
 					<!-- 第三行 -->
 					<div class="flex flex-row justify-between items-center mt-3">
 						<div class="text-gray-400">报修时间:{{ item.createTime }}</div>
-						<div v-if="item.state == 0" class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm">
+						<div v-if="item.state == 1" class="flex justify-center items-center bg-blue-500 text-white w-[70px] h-[25px] rounded-full text-sm">
 							待解决
 						</div>
-						<div v-if="item.state == 1" class="flex justify-center items-center bg-red-500 text-white w-[70px] h-[25px] rounded-full text-sm">
-							处理中
-						</div>
+
 						<div v-if="item.state == 2" class="flex justify-center items-center bg-gray-400 text-white w-[70px] h-[25px] rounded-full text-sm">
 							已完成
 						</div>

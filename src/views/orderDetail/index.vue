@@ -79,13 +79,12 @@
 		<div class="rounded-md bg-white mt-1 ml-4 w-[340px] h-[400px] flex border-2 border-stone-200">
 			<div class="mt-3 ml-5">
 				<div class="rounded-full w-8 h-8 border-[2.5px] border-blue-500 bg-white">
-					<div v-if="orderDetail.state <= 1" class="cross-icon ml-[6px] relative top-[7px]"></div>
-					<span v-else class="checkmark ml-[10px] relative top-1"></span>
+					<div class="cross-icon ml-[6px] relative top-[7px]"></div>
 				</div>
 				<div v-if="orderDetail.handlerName != null" class="bg-blue-500 w-[3px] h-[55px] ml-[15px]"></div>
 				<div v-if="orderDetail.handlerName != null" class="rounded-full w-8 h-8 border-[2.5px] border-blue-500 bg-white">
 					<!-- <span class="checkmark ml-[10px] relative top-1"></span> -->
-					<div v-if="orderDetail.state <= 1" class="cross-icon ml-[6px] relative top-[7px]"></div>
+					<div v-if="orderDetail.state < 1" class="cross-icon ml-[6px] relative top-[7px]"></div>
 					<span v-else class="checkmark ml-[10px] relative top-1"></span>
 				</div>
 				<div v-if="orderDetail.state > 1" class="bg-blue-500 w-[3px] h-[55px] ml-[15px]"></div>
