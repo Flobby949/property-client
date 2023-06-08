@@ -78,7 +78,7 @@ const onRefresh = () => {
 	<div style="background-color: #f5f5f5">
 		<div>
 			<div class="h-52 rounded-bl-br-full" style="z-index: 99; background: #409eff">
-				<van-nav-bar title="在线报修" left-arrow @click-left="onClickLeft" />
+				<van-nav-bar title="在线报修" :fixed="true" :placeholder="true" left-arrow @click-left="onClickLeft" />
 			</div>
 
 			<div class="flex bordera text-center items-center justify-around relative bottom-[145px]">
