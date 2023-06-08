@@ -106,7 +106,7 @@ const onSubmit = () => {
 	dataForm.value.resultStatus = checked.value
 
 	if (item.photoRequirement != 1) {
-		if (fileList.value != null) {
+		if (fileList.value === []) {
 			showFailToast('请上传图片')
 			return
 		}
