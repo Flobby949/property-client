@@ -55,7 +55,7 @@
 					/>
 				</div>
 
-				<div class="flex">
+				<div v-show="item.photoRequirement != 1" class="flex">
 					<div>
 						<van-uploader v-model="fileList.value" :after-read="afterRead" upload-icon="plus" class="ml-3 mt-3" multiple :max-count="3" reupload />
 					</div>
@@ -75,16 +75,19 @@ import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useSubmitRecord, useUploadImage } from '@/api/safe/record.ts'
 import service from '@/utils/http'
+import { showToast, showFailToast } from 'vant'
 
 const route = useRoute()
 const router = useRouter()
 const list = route.query.item
 const item = JSON.parse(list)
+console.log(item.id)
 const dataForm = ref({
 	id: '',
 	status: '',
 	notes: '',
-	photo: ''
+	photo: '',
+	resultStatus: ''
 })
 const textValue = ref()
 const title = ref('巡更上报')
@@ -92,18 +95,31 @@ const fileList = ref([])
 const checked = ref('0')
 
 const onSubmit = () => {
+	if (textValue.value == null) {
+		showFailToast('内容描述不能为空')
+		return
+	}
 	dataForm.value.id = item.id
 	dataForm.value.status = 1
 	dataForm.value.notes = textValue.value
-	for (let index = 0; index < fileList.value.length; index++) {
-		let element = fileList.value[index]
-		if (dataForm.value.photo != '') {
-			console.log('执行过吗')
-			dataForm.value.photo = dataForm.value.photo + '*' + element
+	console.log(checked.value)
+	dataForm.value.resultStatus = checked.value
+
+	if (item.photoRequirement != 1) {
+		if (fileList.value != null) {
+			showFailToast('请上传图片')
+			return
 		}
-		if (dataForm.value.photo === '') {
-			console.log('执行过了')
-			dataForm.value.photo = element
+		for (let index = 0; index < fileList.value.length; index++) {
+			let element = fileList.value[index]
+			if (dataForm.value.photo != '') {
+				console.log('执行过吗')
+				dataForm.value.photo = dataForm.value.photo + '*' + element
+			}
+			if (dataForm.value.photo === '') {
+				console.log('执行过了')
+				dataForm.value.photo = element
+			}
 		}
 	}
 	console.log('所有照片' + dataForm.value.photo)

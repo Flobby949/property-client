@@ -31,7 +31,11 @@
 				</div>
 				<div class="text-gray-500 flex flex-row items-center justify-between font-semibold ml-3 mt-3 mr-3">
 					<div>巡检时间 ：{{ item.startTime }}-{{ item.endTime }}</div>
-					<div v-if="item.status == 0" class="rounded-full w-[80px] h-[28px] text-white bg-red-400 flex justify-center items-center font-normal">
+					<div
+						v-if="item.status == 0"
+						class="rounded-full w-[80px] h-[28px] text-white bg-red-400 flex justify-center items-center font-normal"
+						@click="submitPatrol(item)"
+					>
 						去巡更
 					</div>
 					<div
@@ -64,10 +68,11 @@ const date = new Date()
 const chooseDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()])
 const currentDate: any = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()])
 const show = ref(false)
+const inspectorId = localStorage.getItem('user')
 //请求条件
 const dataform = reactive({
 	patrolDate: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(),
-	inspectorId: 10004,
+	inspectorId: inspectorId,
 	order: '',
 	asc: false,
 	page: 1,
@@ -143,6 +148,32 @@ const getInfo = (recordId: number) => {
 			recordId: recordId
 		}
 	})
+}
+
+const submitPatrol = (item: RecordItem) => {
+	if (item.type == 0) {
+		const element: any = {
+			id: item.id,
+			type: item.type,
+			title: item.communityName + item.buildingName + item.units,
+			startTime: item.startTime,
+			endTime: item.endTime,
+			communityName: item.communityName,
+			wayName: item.wayName
+		}
+		router.push({ path: '/submitPatrol', query: { item: JSON.stringify(element) } })
+	} else {
+		const element: any = {
+			id: item.id,
+			type: item.type,
+			title: item.communityName + item.pointName,
+			startTime: item.startTime,
+			endTime: item.endTime,
+			communityName: item.communityName,
+			wayName: item.wayName
+		}
+		router.push({ path: '/submitPatrol', query: { item: JSON.stringify(element) } })
+	}
 }
 
 interface RecordItem {

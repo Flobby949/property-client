@@ -46,6 +46,7 @@ interface RecordItem {
 	photo: string
 	notes?: string
 	status: number
+	updateTime: string
 }
 </script>
 <template>
@@ -115,13 +116,13 @@ interface RecordItem {
 			<div class="flex flex-row justify-between mx-4 mt-3">
 				<div class="text-gray-500 font-bold text-base">巡检时间</div>
 				<div class="font-semibold text-base">
-					{{ recordDetail.inspectorTime }}
+					{{ recordDetail.updateTime }}
 				</div>
 			</div>
 			<div class="flex flex-col justify-between mx-4 mt-3">
 				<div class="text-gray-500 font-bold text-base">巡检结果</div>
 				<div class="font-semibold text-base bg-gray-100 mt-1">
-					{{ recordDetail.inspectorResult }}
+					{{ recordDetail.notes }}
 				</div>
 			</div>
 			<div class="flex flex-col justify-between mx-4 mt-3">

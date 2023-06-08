@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { store } from './store'
-import { List, PullRefresh, Button, RadioGroup, Radio, Field, CellGroup, Uploader, Image as VanImage } from 'vant'
+import { List, PullRefresh, Button, RadioGroup, Radio, Field, CellGroup, Uploader, Image as VanImage, Toast } from 'vant'
 import 'vant/lib/index.css'
 // normalize.css
 import 'normalize.css/normalize.css'
@@ -13,7 +13,7 @@ import 'virtual:svg-icons-register'
 
 import App from './App.vue'
 import router from './router'
-
+import '@/assets/nomarl.css'
 const app = createApp(App)
 app.use(store)
 app.use(router)
@@ -26,4 +26,5 @@ app.use(Field)
 app.use(CellGroup)
 app.use(Uploader)
 app.use(VanImage)
+app.use(Toast)
 app.mount('#app')

@@ -150,6 +150,14 @@ const routes: Array<RouteRecordRaw> = [
 		meta: {
 			title: '报修详情'
 		}
+	},
+	{
+		path: '/allocation/:orderId',
+		name: 'allocation',
+		component: () => import('@/views/allocation/index.vue'),
+		meta: {
+			title: '工单分配'
+		}
 	}
 ]
 
