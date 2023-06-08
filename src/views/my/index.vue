@@ -9,7 +9,7 @@
 			<van-sidebar-item title="服务工具" />
 		</van-sidebar>
 		<van-cell-group class="">
-			<van-cell title="上报记录" size="large" url="#/certified" is-link>
+			<van-cell title="上报记录" size="large" is-link @click="repair">
 				<template #icon>
 					<van-icon class="ml-1 mr-1" name="https://music-1307940544.cos.ap-nanjing.myqcloud.com/test/shangbao.png" size="22"></van-icon>
 				</template>
@@ -19,7 +19,7 @@
 					<van-icon class="mr-1" name="https://music-1307940544.cos.ap-nanjing.myqcloud.com/test/xungeng.png" size="26"></van-icon>
 				</template>
 			</van-cell>
-			<van-cell title="工单记录" url="" size="large" is-link>
+			<van-cell title="工单记录" url="" size="large" is-link @click="orderRecordClick">
 				<template #icon>
 					<van-icon class="mr-1" name="https://music-1307940544.cos.ap-nanjing.myqcloud.com/test/gongdan.png" size="26"></van-icon>
 				</template>
@@ -39,6 +39,16 @@ import router from '@/router'
 const patrolRecordClick = () => {
 	router.push({
 		path: '/patrolRecord'
+	})
+}
+const orderRecordClick = () => {
+	router.push({
+		path: 'order'
+	})
+}
+const repair = () => {
+	router.push({
+		path: '/repair'
 	})
 }
 </script>
