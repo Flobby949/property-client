@@ -7,9 +7,9 @@ import { onMounted, ref } from 'vue'
 // 详情
 const info = (item: any) => {
 	router.push({
-		name: 'repairDetail',
+		name: 'orderDetail',
 		params: {
-			repairId: item.id
+			orderId: item.id
 		}
 	})
 }
