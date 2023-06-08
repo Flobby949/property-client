@@ -1,5 +1,8 @@
 <template>
 	<div class="login-box">
+		<div class="logo">
+			<img src="@/assets/log.png" alt="" />
+		</div>
 		<div class="title">
 			<span>智慧管家</span>
 		</div>
@@ -88,5 +91,15 @@ const repassword = () => {
 	justify-content: flex-end;
 	margin-right: 20px;
 	font-size: 14px;
+}
+.logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 20px;
+}
+.logo img {
+	height: 100px;
+	width: 100px;
 }
 </style>
