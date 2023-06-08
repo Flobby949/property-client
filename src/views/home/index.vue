@@ -101,7 +101,7 @@ const numberForm = reactive({
 	noPointNumber: ''
 })
 
-const inspectorId = ref(10004)
+const inspectorId = localStorage.getItem('user')
 
 const remoteClick = () => {
 	router.push({
@@ -115,22 +115,22 @@ const repair = () => {
 	})
 }
 const getPatrolNumbers = () => {
-	useAllNumber(inspectorId.value).then(res => {
+	useAllNumber(inspectorId).then(res => {
 		console.log(res.data)
 		Object.assign(numberForm, res.data)
 	})
-	useOverNumber(inspectorId.value).then(res => {
+	useOverNumber(inspectorId).then(res => {
 		Object.assign(numberForm, res.data)
 	})
 
-	useNoNumber(inspectorId.value).then(res => {
+	useNoNumber(inspectorId).then(res => {
 		Object.assign(numberForm, res.data)
 	})
 }
 getPatrolNumbers()
 
 const toPatrol = () => {
-	router.push({ path: '/patrol', query: { id: inspectorId.value } })
+	router.push({ path: '/patrol', query: { id: inspectorId } })
 }
 
 const hallClick = () => {
