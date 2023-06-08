@@ -214,7 +214,8 @@ const getDetial = (id: number) => {
 }
 
 .img {
-	width: 90px;
+	width: 100px;
+	height: 60px;
 	border-radius: 5px;
 	margin: 3px;
 }
